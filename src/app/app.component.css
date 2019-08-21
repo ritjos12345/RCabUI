@@ -43,12 +43,7 @@
 
 .mat-cell:nth-child(2),
 .mat-header-cell:nth-child(2){
-  flex: 0 0 30%;
-}
-
-.mat-cell:nth-child(3),
-.mat-header-cell:nth-child(3){
-  flex: 0 0 6%;
+  flex: 0 0 10%;
 }
 
 .mat-cell:nth-child(7),

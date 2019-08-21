@@ -13,6 +13,10 @@ export class Issue {
   drop_time: string;
   hire_type: string;
   for_use: string;
-  request_id: string;
+  request_id: number;
   veh_id: string;
+  GSTIN: string;
+  start_km: number;
+  end_km: number;
+  driver: string;
 }

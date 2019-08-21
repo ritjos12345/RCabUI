@@ -35,14 +35,42 @@ export class DataService {
   // DEMO ONLY, you can find working methods below
   addIssue(issue: Issue): void {
     this.dialogData = issue;
+    console.log(issue);
+    this.httpClient.post(this.API_URL, issue).subscribe(data => {
+      alert("success");
+      // this.toasterService.showToaster('Successfully added', 3000);
+    },
+      (err: HttpErrorResponse) => {
+        // this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
+        alert(err.message);
+      });
   }
 
   updateIssue(issue: Issue): void {
     this.dialogData = issue;
+    this.httpClient.put(this.API_URL + "/" + issue.request_id, issue).subscribe(data => {
+      alert("success");
+      //  this.toasterService.showToaster('Successfully edited', 3000);
+    },
+      (err: HttpErrorResponse) => {
+        //  this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);\
+        alert(err.message);
+      }
+    );
   }
 
   deleteIssue(id: number): void {
     console.log(id);
+    this.httpClient.delete(this.API_URL + "/" + id).subscribe(data => {
+      console.log(data['']);
+      //  this.toasterService.showToaster('Successfully deleted', 3000);
+      alert("success");
+    },
+      (err: HttpErrorResponse) => {
+        // this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
+        alert(err.message);
+      }
+    );
   }
 }
 
@@ -58,7 +86,7 @@ export class DataService {
       },
       (err: HttpErrorResponse) => {
       this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
-    });
+      });
    }
 
     // UPDATE, PUT METHOD

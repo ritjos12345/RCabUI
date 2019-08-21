@@ -43,7 +43,7 @@
 
     <ng-container matColumnDef="drop_add">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Drop Location</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.drop_add}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.drop_add}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="drop_time">
@@ -61,11 +61,12 @@
 
       <mat-cell *matCellDef="let row; let i=index;">
         <button mat-icon-button color="accent"
-          (click)="startEdit(i, row.id, row.title, row.state, row.url, row.created_at, row.updated_at)">
+          (click)="startEdit(i, row.req_name,row.req_comp,row.req_mail,row.req_num,row.veh_seg,row.pickup_loc,row.from_date,row.drop_loc,row.pickup_add,row.drop_add,row.pickup_time,row.drop_time,row.hire_type,row.for_use,row.request_id,row.veh_id,row.GSTIN,row.start_km,row.end_km,row.driver)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
 
-        <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.title, row.state, row.url)">
+        <button mat-icon-button color="accent"
+          (click)="deleteItem(i, row.req_name,row.req_comp,row.req_mail,row.req_num,row.veh_seg,row.pickup_loc,row.from_date,row.drop_loc,row.pickup_add,row.drop_add,row.pickup_time,row.drop_time,row.hire_type,row.for_use,row.request_id,row.veh_id,row.GSTIN,row.start_km,row.end_km,row.driver)">
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
       </mat-cell>

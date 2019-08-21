@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   exampleDatabase: DataService | null;
   dataSource: ExampleDataSource | null;
   index: number;
-  id: number;
+  request_id: number;
 
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
@@ -56,19 +56,18 @@ export class AppComponent implements OnInit {
     });
   }
 
-  startEdit(i: number, id: number, title: string, state: string, url: string, created_at: string, updated_at: string) {
-    this.id = id;
+  startEdit(i: number, req_name: string, req_comp: string, req_mail: string, req_num: number, veh_seg: string, pickup_loc: string, from_date: string, drop_loc: string, pickup_add: string, drop_add: string, pickup_time: string, drop_time: string, hire_type: string, for_use: string, request_id: number, veh_id: string, GSTIN: string, start_km: number, end_km: number, driver: string) {
+    this.request_id = request_id;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
     console.log(this.index);
     const dialogRef = this.dialog.open(EditDialogComponent, {
-      data: { id: id, title: title, state: state, url: url, created_at: created_at, updated_at: updated_at }
+      data: { req_name: req_name, req_comp: req_comp, req_mail: req_mail, req_num: req_num, veh_seg: veh_seg, pickup_loc: pickup_loc, from_date: from_date, drop_loc: drop_loc, pickup_add: pickup_add, drop_add: drop_add, pickup_time: pickup_time, drop_time: drop_time, hire_type: hire_type, for_use: for_use, request_id: request_id, veh_id: veh_id, GSTIN: GSTIN, start_km: start_km, end_km: end_km, driver: driver }
     });
-
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.request_id === this.request_id);
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
         // And lastly refresh table
@@ -77,16 +76,16 @@ export class AppComponent implements OnInit {
     });
   }
 
-  deleteItem(i: number, id: number, title: string, state: string, url: string) {
+  deleteItem(i: number, req_name: string, req_comp: string, req_mail: string, req_num: number, veh_seg: string, pickup_loc: string, from_date: string, drop_loc: string, pickup_add: string, drop_add: string, pickup_time: string, drop_time: string, hire_type: string, for_use: string, request_id: number, veh_id: string, GSTIN: string, start_km: number, end_km: number, driver: string) {
     this.index = i;
-    this.id = id;
+    this.request_id = request_id;
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: { id: id, title: title, state: state, url: url }
+      data: { req_name: req_name, req_comp: req_comp, req_mail: req_mail, req_num: req_num, veh_seg: veh_seg, pickup_loc: pickup_loc, from_date: from_date, drop_loc: drop_loc, pickup_add: pickup_add, drop_add: drop_add, pickup_time: pickup_time, drop_time: drop_time, hire_type: hire_type, for_use: for_use, request_id: request_id, veh_id: veh_id, GSTIN: GSTIN, start_km: start_km, end_km: end_km, driver: driver }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.request_id === this.request_id);
         // for delete we use splice in order to remove single object from DataService
         this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
         this.refreshTable();
@@ -203,12 +202,12 @@ export class ExampleDataSource extends DataSource<Issue> {
       let propertyB: number | string = '';
 
       switch (this._sort.active) {
-        case 'id': [propertyA, propertyB] = [a.id, b.id]; break;
-        case 'title': [propertyA, propertyB] = [a.title, b.title]; break;
-        case 'state': [propertyA, propertyB] = [a.state, b.state]; break;
-        case 'url': [propertyA, propertyB] = [a.url, b.url]; break;
-        case 'created_at': [propertyA, propertyB] = [a.created_at, b.created_at]; break;
-        case 'updated_at': [propertyA, propertyB] = [a.updated_at, b.updated_at]; break;
+        case 'request_id': [propertyA, propertyB] = [a.request_id, b.request_id]; break;
+        case 'req_name': [propertyA, propertyB] = [a.req_name, b.req_name]; break;
+        case 'pickup_time': [propertyA, propertyB] = [a.pickup_time, b.pickup_time]; break;
+        case 'pickup_add': [propertyA, propertyB] = [a.pickup_add, b.pickup_add]; break;
+        case 'drop_time': [propertyA, propertyB] = [a.drop_time, b.drop_time]; break;
+        case 'drop_add': [propertyA, propertyB] = [a.drop_add, b.drop_add]; break;
       }
 
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

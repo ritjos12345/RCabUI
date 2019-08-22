@@ -5,7 +5,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class DataService {
-  private readonly API_URL = 'http://localhost:3000/travelRequests';
+  private readonly API_URL = 'http://192.168.0.174:3000/travelRequests';
   //'https://api.github.com/repos/angular/angular/issues';
 
   dataChange: BehaviorSubject<Issue[]> = new BehaviorSubject<Issue[]>([]);
